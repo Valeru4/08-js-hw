@@ -12,14 +12,12 @@ refs.form.addEventListener('input', throttle (onTextInput, 500));
 
 const STORAGE_KEY = "feedback-form-state"
 
+let savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY))
+
+
 fillText()
 
 
-function onSubmit(event) {
-    event.preventDefault()
-    event.target.reset()
-    localStorage.removeItem(STORAGE_KEY)
-}
 
 function onTextInput(event) {
     const message = {
@@ -27,13 +25,30 @@ function onTextInput(event) {
         message: refs.textarea.value,
     };
 
+    console.log(message)
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(message));
+
+
+}
+
+
+function onSubmit(event) {
+    event.preventDefault()
+
+    if (refs.email.value === '' || refs.textarea.value === '') {
+        return alert(`Fill the form`)
+    } else {
+    console.log(savedMessage)
+    }
+
+    event.currentTarget.reset()
+    localStorage.removeItem(STORAGE_KEY)
 }
 
 function fillText() {
-    const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY))
-    if (savedMessage) {
-        refs.textarea.value = savedMessage.textarea
+    if (savedMessage) { 
+        refs.textarea.value = savedMessage.message
         refs.email.value = savedMessage.email;
     };
 }

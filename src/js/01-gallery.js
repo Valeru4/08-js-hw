@@ -31,10 +31,7 @@ function createImageItemEl(images) {
 
 
 
-galleryEl.addEventListener('click', onImageClick)
+galleryEl.addEventListener('click',  new SimpleLightbox('.gallery__item a', 
+    {captionDelay: 250,  captionsData: 'alt', enableKeyboard: true}))
 
-function onImageClick() {
-    // event.preventDefault();
-    const lightbox = new SimpleLightbox('.gallery__item a', 
-    {captionDelay: 250,  captionsData: 'alt', enableKeyboard: true});   
-}
+
