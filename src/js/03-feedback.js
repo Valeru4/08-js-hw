@@ -24,22 +24,21 @@ function onTextInput(event) {
         email: refs.email.value,
         message: refs.textarea.value,
     };
-
-    console.log(message)
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(message));
-
-
 }
 
 
 function onSubmit(event) {
     event.preventDefault()
-
+ const submitData = {
+        email: refs.email.value,
+        message: refs.textarea.value,
+ };
+    
     if (refs.email.value === '' || refs.textarea.value === '') {
         return alert(`Fill the form`)
     } else {
-    console.log(savedMessage)
+    console.log(submitData)
     }
 
     event.currentTarget.reset()
